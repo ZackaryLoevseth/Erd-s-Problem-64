@@ -1,4 +1,4 @@
-name: Verify Erdős #64 publication packet
+name: "Verify Erdős #64 publication packet"
 
 on:
   push:
