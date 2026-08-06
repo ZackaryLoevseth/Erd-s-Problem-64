@@ -1,142 +1,91 @@
-# An F = 68 witness for Erdős Problem #409
+# Erdős Problem #64 — structural and computational research notes
 
-Certificates and code verifying
+> **Status:** Erdős Problem #64 remains open. This branch does **not** claim a proof or a counterexample.
 
-$$
-F(6{,}148{,}888{,}817)=68
-$$
+The problem asks whether every finite simple graph of minimum degree at least three contains a cycle of length \(2^k\) for some integer \(k\ge 2\).
 
-for the iteration
+This publication records a recovered research state, selected independent audit outputs, and a new **theorem candidate** about hypothetical minimal counterexamples. It is intentionally isolated on the branch [`publication/erdos-problem-64`](../../tree/publication/erdos-problem-64); it is unrelated to the repository's default-branch work on Erdős Problem #409 and is not proposed for merger into that project.
 
-$$
-T(n)=\varphi(n)+1.
-$$
+## Main theorem candidate
 
-Here $F(p)=0$ when $p$ is prime, and for composite $n$,
+Assume \(G\) is a minimum-order counterexample and use Avery Carr's two structural results that:
 
-$$
-F(n)=1+F(T(n)).
-$$
+1. the vertices of degree at least four form an independent set; and
+2. every vertex has a neighbor of degree exactly three.
 
-Starting from
+Writing
 
-$$
-6{,}148{,}888{,}817
-=
-75{,}503 \times 81{,}439,
-$$
+\[
+V_3=\{v:d_G(v)=3\},\qquad V_{\ge4}=\{v:d_G(v)\ge4\},
+\]
 
-the trajectory first reaches a prime after exactly 68 applications of $T$.
+the note proves
 
-The terminal prime is
+\[
+\boxed{|V_3|\ge 2|V_{\ge4}|+3}.
+\]
 
-$$
-9{,}500{,}401.
-$$
+Consequently,
 
-## Minimal verification
+\[
+3|V_3|\ge 2|V(G)|+3.
+\]
 
-The verification program is contained in [`verify.py`](verify.py).
+The proof uses a simple quotient graph on \(V_{\ge4}\) represented by degree-three vertices with exactly one neighbor in \(V_3\), and shows that quotient must be 2-degenerate. See [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md).
 
-From a terminal opened in this repository, run:
+**Verification status:** the argument was independently derived during an AI-assisted recovery review and has not yet received external human verification. It should be treated as a theorem candidate, not as an established published theorem.
 
-```bash
-python -m pip install -r requirements.txt
-python verify.py
-```
+## Contents
 
-Expected output:
+- [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md) — complete human-readable proof of the proposed \(+3\) density bound.
+- [`reports/data-and-significance-review.md`](reports/data-and-significance-review.md) — assessment of what the recovered data does and does not establish for Problem #64.
+- [`audits/n28-complete-census-fresh-audit.json`](audits/n28-complete-census-fresh-audit.json) — independent audit of 251 recovered order-28 connected cubic \(C_4/C_8\)-free isomorphism classes; every class has a \(C_{16}\).
+- [`audits/one-port-n31-audit.json`](audits/one-port-n31-audit.json) — exact audit of an order-31 one-port near-candidate, showing minimum degree two and 138 distinct 16-cycles.
+- [`recovery/RECOVERY_SUMMARY.md`](recovery/RECOVERY_SUMMARY.md) — public preservation summary, hashes, bounded gaps, and restart boundary.
+- [`AI_USE.md`](AI_USE.md) — authorship, AI assistance, and claim-status disclosure.
 
-```text
-68 9500401
-```
+## What is established by the included audits
 
-The complete verification code is:
+The order-28 audit reports that all 251 recovered connected simple cubic classes with no 4-cycle or 8-cycle contain a 16-cycle. Its scope statement is explicit: it independently verifies the recovered canonical union and cycle properties, but does not rerun the hundreds of millions of raw generator states used upstream.
 
-```python
-from sympy import isprime, totient
+The order-31 one-port object is **not** a counterexample. Its degree sequence is \((2,3,\ldots,3)\), and its exact cycle vector is
 
+\[
+(C_4,C_8,C_{16})=(0,0,138).
+\]
 
-def main() -> None:
-    n = 6_148_888_817
-    steps = 0
+## What is not established
 
-    while not isprime(n):
-        n = int(totient(n)) + 1
-        steps += 1
+This release does not establish either direction of the full conjecture. In particular, it contains neither:
 
-    print(steps, n)
+- a finite graph of minimum degree at least three avoiding all cycles of length \(2^k\), nor
+- a proof that every such finite graph contains one.
 
-    if (steps, n) != (68, 9_500_401):
-        raise RuntimeError(
-            f"Unexpected result: expected (68, 9500401), got ({steps}, {n})"
-        )
+Large lift, expansion, gadget, and port searches in the recovered workspace concern restricted construction families. Their raw assignment counts must not be interpreted as exhaustive coverage of all minimum-degree-three graphs.
 
+## Recovery provenance
 
-if __name__ == "__main__":
-    main()
-```
-
-## Scope of the result
-
-This establishes the explicit computational lower bound
-
-$$
-\sup_{n\ge1}F(n)\ge68.
-$$
-
-It is a computational partial result related to [Erdős Problem #409](https://www.erdosproblems.com/409).
-
-It does **not** resolve the broader questions concerning:
-
-- upper bounds for $F(n)$;
-- whether infinitely many integers reach the same terminal prime;
-- the density of integers reaching a fixed prime.
-
-I am not currently aware of a previously published example with $F\ge68$. 
-
-## Verification packet
-
-The complete certificate packet contains:
-
-- the full 69-node trajectory;
-- exact factorizations of every composite trajectory node;
-- exact recomputation of every totient;
-- verification of every transition;
-- independent implementations;
-- a standalone certificate checker;
-- a terminal-primality certificate;
-- a 118-entry SHA-256 manifest.
-
-Archive SHA-256:
+The preserved research checkpoint is:
 
 ```text
-ca5b9a9e69f9a91e3de2642452259c307a416f659349c5067cb20c692f42d026
+Git commit: 34683df66206bd188a9f6a67b91fb94289e6d780
+Freeze UTC: 2026-08-06T00:34:24Z
+Files preserved: 23,569
+Logical source bytes: 4,649,689,073
+Verified restore: YES
 ```
 
-Canonical trajectory SHA-256:
-
-```text
-6a6758b8bb6e2d2cd812301b04eabc9d14699d18908a1cdf7066454934802ad7
-```
-
-The complete certificate archive is provided through this repository’s GitHub Releases section.
+The concise publication here does not attempt to place the multi-gigabyte archive in GitHub. The public recovery summary records the authoritative checkpoint, principal hashes, bounded gaps, and restart boundary; the full sealed handoff remains part of the preserved archive.
 
 ## AI assistance and authorship
 
-This result was produced through a substantially AI-assisted research workflow using OpenAI and Anthropic systems.
+The research target, preservation decisions, and publication decision were directed by **Zackary Loevseth**. OpenAI systems, including ChatGPT/GPT-5.6 Pro, substantially assisted with the recovery audit, selected verification work, mathematical derivation, and drafting. The exact disclosure and claim-status boundaries are in [`AI_USE.md`](AI_USE.md).
 
-The research target, governing protocol, iterative prompt design, verification requirements, cross-model review, and final publication decisions were directed by **Zackary Loevseth**.
+## References
 
-## Public record
+- T. F. Bloom, “Erdős Problem #64,” Erdős Problems, accessed 2026-08-06: https://www.erdosproblems.com/64
+- A. Carr, *Every Minimal Counterexample to the Erdős–Gyárfás Conjecture is Predominantly Cubic*, arXiv:2605.22844.
 
-This witness was posted on the discussion page for
-[Erdős Problem #409](https://www.erdosproblems.com/409) on July 22, 2026.
+## Suggested citation
 
-It is as an example giving the largest known value
-of \(F(n)\).
-
-## Citation
-
-T. F. Bloom, “Erdős Problem #409,”  
-https://www.erdosproblems.com/409, accessed July 22, 2026.
+> Zackary Loevseth, “Erdős Problem #64 — structural and computational research notes,” public research branch, 2026. Unverified theorem candidate and computational audit release.
