@@ -1,85 +1,95 @@
-# Erdős Problem #64 — structural and computational research notes
+# Erdős Problem #64 — structural theorems and certified computational research
 
-> **Status:** Erdős Problem #64 remains open. This branch does **not** claim a proof or a counterexample.
+> **Status:** Erdős Problem #64 remains open. This repository does **not** claim a proof of the conjecture or a counterexample.
 
-The problem asks whether every finite simple graph of minimum degree at least three contains a cycle of length \(2^k\) for some integer \(k\ge 2\).
+The problem asks whether every finite simple graph of minimum degree at least three contains a cycle of length \(2^k\) for some integer \(k\ge2\).
 
-This publication records a recovered research state, selected independent audit outputs, and a new **theorem candidate** about hypothetical minimal counterexamples. It is intentionally isolated on the branch [`publication/erdos-problem-64`](../../tree/publication/erdos-problem-64); it is unrelated to the repository's default-branch work on Erdős Problem #409 and is not proposed for merger into that project.
+## Main structural theorem
 
-## Main theorem candidate
-
-Assume \(G\) is a minimum-order counterexample and use Avery Carr's two structural results that:
-
-1. the vertices of degree at least four form an independent set; and
-2. every vertex has a neighbor of degree exactly three.
-
-Writing
+Let \(G\) be a counterexample chosen with minimum order and, subject to that, minimum size. Define
 
 \[
-V_3=\{v:d_G(v)=3\},\qquad V_{\ge4}=\{v:d_G(v)\ge4\},
+A=V_3(G),\qquad
+B=V_{\ge4}(G),\qquad
+b=|B|,\qquad
+s=\sum_{v\in B}(d_G(v)-4).
 \]
 
-the note proves
+Using Avery Carr's published structural lemmas that \(B\) is independent and every vertex has a degree-three neighbor, the note proves
 
 \[
-\boxed{|V_3|\ge 2|V_{\ge4}|+3}.
+\boxed{|A|\ge 2b+s+4}
+\]
+
+or, equivalently,
+
+\[
+\boxed{
+|V_3(G)|
+\ge
+4+\sum_{v\in V_{\ge4}(G)}(d_G(v)-2).
+}
 \]
 
 Consequently,
 
 \[
-3|V_3|\ge 2|V(G)|+3.
+\boxed{3|V_3(G)|\ge2|V(G)|+s+4}
 \]
 
-The proof uses a simple quotient graph on \(V_{\ge4}\) represented by degree-three vertices with exactly one neighbor in \(V_3\), and shows that quotient must be 2-degenerate. See [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md).
-
-**Verification status:** the argument was independently derived during an AI-assisted recovery review and has not yet received external human verification. It should be treated as a theorem candidate, not as an established published theorem.
-
-## Contents
-
-- [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md) — complete human-readable proof of the proposed \(+3\) density bound.
-- [`reports/data-and-significance-review.md`](reports/data-and-significance-review.md) — assessment of what the recovered data does and does not establish for Problem #64.
-- [`audits/n28-complete-census-fresh-audit.json`](audits/n28-complete-census-fresh-audit.json) — independent audit of 251 recovered order-28 connected cubic \(C_4/C_8\)-free isomorphism classes; every class has a \(C_{16}\).
-- [`audits/one-port-n31-audit.json`](audits/one-port-n31-audit.json) — exact audit of an order-31 one-port near-candidate, showing minimum degree two and 138 distinct 16-cycles.
-- [`recovery/RECOVERY_SUMMARY.md`](recovery/RECOVERY_SUMMARY.md) — public preservation summary, hashes, bounded gaps, and restart boundary.
-- [`AI_USE.md`](AI_USE.md) — authorship, AI assistance, and claim-status disclosure.
-
-## What is established by the included audits
-
-The order-28 audit reports that all 251 recovered connected simple cubic classes with no 4-cycle or 8-cycle contain a 16-cycle. Its scope statement is explicit: it independently verifies the recovered canonical union and cycle properties, but does not rerun the hundreds of millions of raw generator states used upstream.
-
-The order-31 one-port object is **not** a counterexample. Its degree sequence is \((2,3,\ldots,3)\), and its exact cycle vector is
+and
 
 \[
-(C_4,C_8,C_{16})=(0,0,138).
+\boxed{|E(G)|\le2|V(G)|-b-2}.
 \]
+
+The proof constructs a simple quotient graph on \(B\), proves that it is 2-degenerate by lifting every dyadic cycle back to \(G\), and then uses an exact parity obstruction to improve the initial \(+3\) count to \(+4\).
+
+See [`proofs/minimal-counterexample-excess-theorem.md`](proofs/minimal-counterexample-excess-theorem.md).
+
+### Sparsity consequences
+
+Because the counterexample is minimal first by order and then by size, every proper subgraph is 2-degenerate. Together with the edge bound above, this yields
+
+\[
+\operatorname{mad}(G)<4
+\qquad\text{and}\qquad
+\operatorname{arb}(G)=2.
+\]
+
+The size tie-break is required for proper spanning subgraphs in this deduction; the core \(2b+s+4\) theorem itself uses only order-minimality after Carr's two structural lemmas are available.
+
+## Verification and claim status
+
+The theorem was produced in a theorem-first AI-assisted run and passed:
+
+- structurally independent Codex proof reconstructions;
+- clean-clone theorem and post-density checks;
+- a sealed 72-entry publication-packet manifest;
+- line-by-line review reported by the repository owner.
+
+No external human peer review, formal proof-assistant verification, or novelty claim is asserted. The conjecture remains open.
+
+The exact local seal metadata is recorded in [`recovery/THEOREM_FIRST_SEAL_20260806.md`](recovery/THEOREM_FIRST_SEAL_20260806.md). The machine-local Git bundle named there is not yet stored in this public repository; this branch publishes the human-checkable theorem and its provenance without claiming byte identity to an unavailable public bundle.
+
+## Earlier and supporting material
+
+- [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md) — earlier \(+3\) theorem candidate, now superseded by the excess-sensitive \(+4\) theorem.
+- [`reports/data-and-significance-review.md`](reports/data-and-significance-review.md) — review of the recovered computational workspace.
+- [`audits/n28-complete-census-fresh-audit.json`](audits/n28-complete-census-fresh-audit.json) — audit of 251 recovered order-28 connected cubic \(C_4/C_8\)-free classes; every class contains a \(C_{16}\).
+- [`audits/one-port-n31-audit.json`](audits/one-port-n31-audit.json) — audit of a rejected order-31 one-port near-candidate.
+- [`recovery/RECOVERY_SUMMARY.md`](recovery/RECOVERY_SUMMARY.md) — preservation summary for the earlier multi-gigabyte research checkpoint.
+- [`PUBLICATION_STATUS.md`](PUBLICATION_STATUS.md) — exact public claim ledger and merge gates.
+- [`AI_USE.md`](AI_USE.md) — human direction, AI assistance, and claim boundaries.
 
 ## What is not established
 
-This release does not establish either direction of the full conjecture. In particular, it contains neither:
+This repository contains neither:
 
-- a finite graph of minimum degree at least three avoiding all cycles of length \(2^k\), nor
-- a proof that every such finite graph contains one.
+- a finite minimum-degree-three graph avoiding every cycle of length \(2^k\); nor
+- a proof that every such graph contains one.
 
-Large lift, expansion, gadget, and port searches in the recovered workspace concern restricted construction families. Their raw assignment counts must not be interpreted as exhaustive coverage of all minimum-degree-three graphs.
-
-## Recovery provenance
-
-The preserved research checkpoint is:
-
-```text
-Git commit: 34683df66206bd188a9f6a67b91fb94289e6d780
-Freeze UTC: 2026-08-06T00:34:24Z
-Files preserved: 23,569
-Logical source bytes: 4,649,689,073
-Verified restore: YES
-```
-
-The concise publication here does not attempt to place the multi-gigabyte archive in GitHub. The public recovery summary records the authoritative checkpoint, principal hashes, bounded gaps, and restart boundary; the full sealed handoff remains part of the preserved archive.
-
-## AI assistance and authorship
-
-The research target, preservation decisions, and publication decision were directed by **Zackary Loevseth**. OpenAI systems, including ChatGPT/GPT-5.6 Pro, substantially assisted with the recovery audit, selected verification work, mathematical derivation, and drafting. The exact disclosure and claim-status boundaries are in [`AI_USE.md`](AI_USE.md).
+The structural theorem constrains every hypothetical lexicographically minimal counterexample. It does not establish that no counterexample exists.
 
 ## References
 
@@ -88,4 +98,4 @@ The research target, preservation decisions, and publication decision were direc
 
 ## Suggested citation
 
-> Zackary Loevseth, “Erdős Problem #64 — structural and computational research notes,” public research branch, 2026. Unverified theorem candidate and computational audit release.
+> Zackary Loevseth, “Excess-Sensitive Degree-Three Bounds for Minimal Erdős–Gyárfás Counterexamples,” version 0.2.0, 2026. AI-assisted structural research note; novelty and external review pending.

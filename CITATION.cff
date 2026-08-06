@@ -1,23 +1,29 @@
 cff-version: 1.2.0
-message: "Please cite this release as an unverified research note and computational audit, not as a solution of Erdős Problem #64."
-title: "Erdős Problem #64: Structural and Computational Research Notes"
+message: "Please cite this as an AI-assisted structural research note, not as a solution of Erdős Problem #64."
+title: "Excess-Sensitive Degree-Three Bounds for Minimal Erdős–Gyárfás Counterexamples"
 type: dataset
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-08-06
 authors:
   - family-names: "Loevseth"
     given-names: "Zackary"
     alias: "ZackaryLoevseth"
-repository-code: "https://github.com/ZackaryLoevseth/erdos-409-f68-witness/tree/publication/erdos-problem-64"
-url: "https://github.com/ZackaryLoevseth/erdos-409-f68-witness/tree/publication/erdos-problem-64"
+repository-code: "https://github.com/ZackaryLoevseth/Erd-s-Problem-64"
+url: "https://github.com/ZackaryLoevseth/Erd-s-Problem-64"
 abstract: >-
-  Recovered research notes and selected computational audits for Erdős Problem #64,
-  including an externally unverified Carr-based theorem candidate asserting that a
-  hypothetical minimum-order counterexample satisfies |V_3| >= 2|V_{>=4}| + 3.
+  A human-checkable structural theorem for hypothetical lexicographically
+  minimal counterexamples to the Erdős–Gyárfás power-of-two cycle conjecture.
+  With A=V_3(G), B=V_{>=4}(G), b=|B|, and
+  s=sum_{v in B}(d(v)-4), the note proves |A| >= 2b+s+4, and derives
+  3|A| >= 2|V(G)|+s+4, |E(G)| <= 2|V(G)|-b-2,
+  maximum average degree below four, and arboricity two.
+  Erdős Problem #64 remains open; novelty and external review are not claimed.
 keywords:
   - graph theory
   - Erdős–Gyárfás conjecture
-  - cycles
-  - minimum degree
-  - computational audit
+  - power-of-two cycles
+  - minimal counterexample
+  - degree sequence
+  - degeneracy
+  - arboricity
   - AI-assisted mathematics
