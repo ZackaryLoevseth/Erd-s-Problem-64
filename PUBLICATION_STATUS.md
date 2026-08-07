@@ -21,7 +21,8 @@ The public proof establishes
 
 \[
 |A|\ge2b+s+4
-=4+\sum_{v\in B}(d_G(v)-2),
+=
+4+\sum_{v\in B}(d_G(v)-2),
 \]
 
 and consequently
@@ -57,15 +58,9 @@ The internal reconstructions were performed by AI systems in the same research p
 
 No novelty or priority claim is made for the excess-sensitive theorem pending specialist literature review.
 
-## Historical and superseded claim
+## Current publication boundary
 
-`proofs/minimal-counterexample-plus3.md` proves the weaker bound
-
-\[
-|V_3|\ge2|V_{\ge4}|+3.
-\]
-
-It remains only as historical provenance. It is mathematically stronger than the public `jul059` \(+1\) bound but is superseded within this repository by \(|A|\ge2b+s+4\). It must not be described as the first public \(2/3\) improvement.
+The current `proofs/` publication contains the excess-sensitive theorem and its promotion record. Earlier public formulations remain recoverable from Git history but are not presented as current theorem files.
 
 ## Local sharpness status
 
@@ -75,13 +70,13 @@ The equality witness cited by the internal audit contains a \(C_8\). Therefore t
 CONSTANT_4_SHARP_FOR_LOCAL_INGREDIENTS_ONLY
 ```
 
-not “sharp for all counterexamples.”
+This is not a sharpness claim over the full counterexample class.
 
 ## Supporting computational material
 
 The included older JSON audits concern explicitly bounded graph classes. They do not establish the global conjecture and must not be cited as exhaustive evidence over all finite minimum-degree-three graphs.
 
-The separate two-port theorem from the local theorem-first workspace is not promoted as part of this public release; its evidence status is dual (PASS under the frozen governing-input contract, HOLD under a strict raw-archive replay standard).
+The separate two-port theorem from the local theorem-first workspace is not promoted as part of this public release; its evidence status is dual: PASS under the frozen governing-input contract and HOLD under a strict raw-archive replay standard.
 
 ## Public provenance decision
 
