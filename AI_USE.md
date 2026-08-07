@@ -9,7 +9,7 @@
 AI systems substantially assisted with:
 
 - recovering and auditing the large research workspace;
-- separating global, structural, restricted-class, computational, superseded, and rejected claims;
+- separating global, structural, restricted-class, computational, historical, and rejected claims;
 - deriving and refining the auxiliary-graph mechanism;
 - producing structurally separate proof reconstructions;
 - exact computational falsification and regression checks;
@@ -54,10 +54,6 @@ The theorem gives
 \]
 
 This is advertised as an improvement over the prior \(2|V|-3\) consequence only when \(b\ge2\).
-
-### Superseded theorem candidate
-
-The earlier `proofs/minimal-counterexample-plus3.md` note is retained for provenance but is superseded by the excess-sensitive theorem.
 
 ### Computational audits
 
