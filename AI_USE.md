@@ -1,22 +1,22 @@
 # AI assistance, authorship, and claim status
 
-## Human direction and authorship
+## Human direction
 
-**Zackary Loevseth** directed the mathematical target, long-horizon execution protocol, preservation requirements, recovery decisions, evaluation criteria, theorem-first redirection, and public-release decision. The repository owner also reported completing a line-by-line review of the reconstructed proof.
+**Zackary Loevseth** directed the research target, execution protocol, preservation and recovery decisions, theorem-first redirection, evaluation criteria, and public-release decision.
 
 ## AI assistance
 
-OpenAI systems, including Codex and ChatGPT/GPT-5.6 Pro, substantially assisted with:
+AI systems substantially assisted with:
 
-- recovering and auditing the multi-gigabyte research workspace;
-- distinguishing global, structural, restricted-class, computational, and rejected claims;
-- deriving the quotient-graph mechanism from Carr's structural lemmas;
+- recovering and auditing the large research workspace;
+- separating global, structural, restricted-class, computational, superseded, and rejected claims;
+- deriving and refining the auxiliary-graph mechanism;
 - producing structurally separate proof reconstructions;
-- checking the parity step and the \(b=0,1\) boundary cases;
-- clean-clone and manifest verification in the local sealed workspace;
-- drafting the public theorem note, provenance record, and claim ledger.
+- exact computational falsification and regression checks;
+- prior-art comparison and claim-status calibration;
+- drafting and revising the public theorem note, provenance record, and claim ledger.
 
-The larger research process also used Anthropic systems for adversarial review and mathematical critique.
+OpenAI systems, including Codex and ChatGPT/GPT-5.6, were central to the theorem-first run and reconstruction. Anthropic Claude and DeepSeek were also used for adversarial critique and comparison against public prior work.
 
 ## Claim-status ledger
 
@@ -26,54 +26,52 @@ Erdős Problem #64 remains open. This repository claims neither a global proof n
 
 ### Structural theorem
 
-The note
-
-```text
-proofs/minimal-counterexample-excess-theorem.md
-```
-
-gives a complete human-checkable proof that every lexicographically minimal counterexample satisfies
+[`proofs/minimal-counterexample-excess-theorem.md`](proofs/minimal-counterexample-excess-theorem.md) gives a complete human-checkable argument that every counterexample chosen first with minimum order and then minimum size satisfies
 
 \[
-|V_3(G)|
-\ge
+|V_3(G)|\ge
 4+\sum_{v\in V_{\ge4}(G)}(d_G(v)-2).
 \]
 
-Equivalently, with \(b=|V_{\ge4}(G)|\) and
-\(s=\sum_{v\in V_{\ge4}(G)}(d_G(v)-4)\),
+Equivalently, with \(b=|V_{\ge4}(G)|\) and \(s=\sum_{v\in V_{\ge4}(G)}(d_G(v)-4)\),
 
 \[
 |V_3(G)|\ge2b+s+4.
 \]
 
-The proof depends on two published structural lemmas of Avery Carr: high-degree vertices are independent, and every vertex has a degree-three neighbor.
+The public proof rederives the minimality facts it uses. Their prior provenance is nevertheless acknowledged: Markström observed independence of the degree-at-least-four set, and Carr proved the degree-three-neighbour property and the published \(4/7\) density bound.
 
-### Derived sparsity consequences
+### Prior public comparison
 
-Under the minimum-order, then minimum-size convention, the note derives
+A comment by `jul059` on the Erdős Problems #64 discussion thread dated 26 July 2026 gives \(|V_3|\ge2|V_{\ge4}|+1\). Accordingly, no claim is made that this repository first crossed the \(2/3\) threshold.
+
+### Derived edge bound
+
+The theorem gives
 
 \[
-|E(G)|\le2|V(G)|-b-2,\qquad
-\operatorname{mad}(G)<4,\qquad
-\operatorname{arb}(G)=2.
+|E(G)|\le2|V(G)|-b-2.
 \]
+
+This is advertised as an improvement over the prior \(2|V|-3\) consequence only when \(b\ge2\).
 
 ### Superseded theorem candidate
 
-The earlier `proofs/minimal-counterexample-plus3.md` note is retained for provenance but is strictly superseded by the excess-sensitive \(+4\) theorem.
+The earlier `proofs/minimal-counterexample-plus3.md` note is retained for provenance but is superseded by the excess-sensitive theorem.
 
 ### Computational audits
 
-The included order-28 and one-port JSON files verify only their declared finite scopes. They are not evidence that all finite graphs have been searched.
+The included finite audits verify only their declared scopes. They are not evidence that all finite graphs have been searched.
 
 ## Review boundary
 
-The theorem was internally reconstructed, clean-clone checked, and reviewed line by line by the repository owner. It has not received external specialist peer review or formal proof-assistant verification. No priority or novelty claim is made.
+The theorem passed multiple structurally independent **internal AI-assisted** proof reconstructions and exact falsification checks. These do not constitute external human peer review, independent research-group review, or formal proof-assistant verification.
 
-Readers should independently inspect the proof and preserve the distinction between:
+No priority or novelty claim is made. Readers should independently inspect the proof and preserve the distinction among:
 
 - a general structural theorem about a hypothetical minimal counterexample;
 - finite computational audits of specified graph classes;
 - local sealed provenance;
+- internal AI-assisted verification;
+- external specialist review, which has not yet occurred;
 - and the unresolved global conjecture.
