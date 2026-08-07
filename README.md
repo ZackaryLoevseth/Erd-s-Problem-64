@@ -1,12 +1,12 @@
-# Erdős Problem #64 — structural theorems and certified computational research
+# Erdős Problem #64 — excess-sensitive structure of minimal counterexamples
 
-> **Status:** Erdős Problem #64 remains open. This repository does **not** claim a proof of the conjecture or a counterexample.
+> **Global status:** Erdős Problem #64 remains open. This repository does **not** claim a proof of the conjecture or a counterexample.
 
 The problem asks whether every finite simple graph of minimum degree at least three contains a cycle of length \(2^k\) for some integer \(k\ge2\).
 
 ## Main structural theorem
 
-Let \(G\) be a counterexample chosen with minimum order and, subject to that, minimum size. Define
+Let \(G\) be a counterexample chosen first with minimum order and then, subject to that, minimum size. Define
 
 \[
 A=V_3(G),\qquad
@@ -15,19 +15,17 @@ b=|B|,\qquad
 s=\sum_{v\in B}(d_G(v)-4).
 \]
 
-Using Avery Carr's published structural lemmas that \(B\) is independent and every vertex has a degree-three neighbor, the note proves
+Then
 
 \[
 \boxed{|A|\ge 2b+s+4}
 \]
 
-or, equivalently,
+or equivalently
 
 \[
 \boxed{
-|V_3(G)|
-\ge
-4+\sum_{v\in V_{\ge4}(G)}(d_G(v)-2).
+|V_3(G)|\ge 4+\sum_{v\in V_{\ge4}(G)}(d_G(v)-2).
 }
 \]
 
@@ -43,59 +41,68 @@ and
 \boxed{|E(G)|\le2|V(G)|-b-2}.
 \]
 
-The proof constructs a simple quotient graph on \(B\), proves that it is 2-degenerate by lifting every dyadic cycle back to \(G\), and then uses an exact parity obstruction to improve the initial \(+3\) count to \(+4\).
+The proof suppresses the degree-three vertices having two neighbours in \(B\) to a simple auxiliary graph on \(B\). Exact cycle doubling and minimum-order minimality force that auxiliary graph to be 2-degenerate; an exact cut identity retaining the excess \(s\), followed by a parity argument, yields the additional unit in the bound.
 
-See [`proofs/minimal-counterexample-excess-theorem.md`](proofs/minimal-counterexample-excess-theorem.md).
+**Full proof:** [`proofs/minimal-counterexample-excess-theorem.md`](proofs/minimal-counterexample-excess-theorem.md)
 
-### Sparsity consequences
+**Promotion record:** [`proofs/excess-theorem-promotion.md`](proofs/excess-theorem-promotion.md)
 
-Because the counterexample is minimal first by order and then by size, every proper subgraph is 2-degenerate. Together with the edge bound above, this yields
+**Independent internal reconstructions:**
+[`audits/excess-theorem-canonical-audit.md`](audits/excess-theorem-canonical-audit.md) and
+[`audits/excess-theorem-second-audit.md`](audits/excess-theorem-second-audit.md).
 
-\[
-\operatorname{mad}(G)<4
-\qquad\text{and}\qquad
-\operatorname{arb}(G)=2.
-\]
+## Prior-work boundary
 
-The size tie-break is required for proper spanning subgraphs in this deduction; the core \(2b+s+4\) theorem itself uses only order-minimality after Carr's two structural lemmas are available.
+The theorem is presented without a novelty or priority claim.
+
+- Markström observed that, in a minimal counterexample, the vertices of degree at least four form an independent set; Carr records this observation and proves that every vertex is adjacent to a degree-three vertex, together with the published \(4/7\) degree-three density bound.
+- A comment by `jul059` on the Erdős Problems #64 discussion thread dated 26 July 2026 gives the stronger public bound \(|V_3|\ge2|V_{\ge4}|+1\). Thus the coarse “more than \(2/3\)” conclusion is not claimed here as new.
+- Narins–Pokrovskiy–Szabó imply \(|E(G)|\le2|V(G)|-3\) for a lexicographically minimal counterexample. The displayed excess-sensitive edge bound improves that inequality when \(b\ge2\), is equal when \(b=1\), and as a uniform formula is weaker when \(b=0\). In the cubic case \(b=0\), the proof separately gives \(|V(G)|\ge8\) and \(|E(G)|=3|V(G)|/2\).
+
+The earlier note [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md) proves the weaker \(|V_3|\ge2|V_{\ge4}|+3\) bound. It is retained only as historical provenance and is superseded by the excess-sensitive theorem above.
 
 ## Verification and claim status
 
-The theorem was produced in a theorem-first AI-assisted run and passed:
+The theorem has a human-checkable proof. During the theorem-first run it passed two structurally independent Codex proof reconstructions and extensive exact falsification checks. Those are **internal AI-assisted checks**, not independent external human review.
 
-- structurally independent Codex proof reconstructions;
-- clean-clone theorem and post-density checks;
-- a sealed 72-entry publication-packet manifest;
-- line-by-line review reported by the repository owner.
+Current status:
 
-No external human peer review, formal proof-assistant verification, or novelty claim is asserted. The conjecture remains open.
+```text
+PROVED_HUMAN_ARGUMENT
+GLOBAL_SOLUTION: NO
+NOVELTY_NOT_ESTABLISHED
+NO_EXTERNAL_SPECIALIST_REVIEW
+NO_FORMAL_PROOF_ASSISTANT_VERIFICATION
+```
 
-The exact local seal metadata is recorded in [`recovery/THEOREM_FIRST_SEAL_20260806.md`](recovery/THEOREM_FIRST_SEAL_20260806.md). The machine-local Git bundle named there is not yet stored in this public repository; this branch publishes the human-checkable theorem and its provenance without claiming byte identity to an unavailable public bundle.
+The frozen canonical theorem used by the audits had SHA-256
+`387ffe0f087e8bf3a66df20d5d267a798f76f5a079e39fcfc70787878b400444`.
+The public proof is a publication transcription of that mathematical argument, with updated status and attribution language; the frozen local file itself was deliberately not mutated after audit.
 
-## Earlier and supporting material
+See [`PUBLICATION_STATUS.md`](PUBLICATION_STATUS.md) for the public claim ledger and [`AI_USE.md`](AI_USE.md) for the AI-use disclosure.
 
-- [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md) — earlier \(+3\) theorem candidate, now superseded by the excess-sensitive \(+4\) theorem.
-- [`reports/data-and-significance-review.md`](reports/data-and-significance-review.md) — review of the recovered computational workspace.
-- [`audits/n28-complete-census-fresh-audit.json`](audits/n28-complete-census-fresh-audit.json) — audit of 251 recovered order-28 connected cubic \(C_4/C_8\)-free classes; every class contains a \(C_{16}\).
-- [`audits/one-port-n31-audit.json`](audits/one-port-n31-audit.json) — audit of a rejected order-31 one-port near-candidate.
-- [`recovery/RECOVERY_SUMMARY.md`](recovery/RECOVERY_SUMMARY.md) — preservation summary for the earlier multi-gigabyte research checkpoint.
-- [`PUBLICATION_STATUS.md`](PUBLICATION_STATUS.md) — exact public claim ledger and merge gates.
-- [`AI_USE.md`](AI_USE.md) — human direction, AI assistance, and claim boundaries.
+## Local sharpness and non-scope
 
-## What is not established
+The internal audit supplies an exact graph attaining both \(|A|=2b+s+4\) and \(|E|=2|V|-b-2\) while satisfying the local counting, parity, 2-degeneracy and \(C_4\)-constraints used in the argument. That graph contains a \(C_8\), so it is **not** a counterexample. Accordingly, the constant four is only claimed sharp for those local ingredients, not for the full counterexample class.
 
-This repository contains neither:
+The theorem does not prove that \(B=\varnothing\), that every minimal counterexample is cubic, or that no counterexample exists.
 
-- a finite minimum-degree-three graph avoiding every cycle of length \(2^k\); nor
-- a proof that every such graph contains one.
+## Supporting computational material
 
-The structural theorem constrains every hypothetical lexicographically minimal counterexample. It does not establish that no counterexample exists.
+The older computational audits in this repository concern explicitly bounded graph classes. They are retained as research provenance and do not establish exhaustive coverage of all finite minimum-degree-three graphs.
+
+- [`reports/data-and-significance-review.md`](reports/data-and-significance-review.md)
+- [`audits/n28-complete-census-fresh-audit.json`](audits/n28-complete-census-fresh-audit.json)
+- [`audits/one-port-n31-audit.json`](audits/one-port-n31-audit.json)
+- [`recovery/RECOVERY_SUMMARY.md`](recovery/RECOVERY_SUMMARY.md)
 
 ## References
 
-- T. F. Bloom, “Erdős Problem #64,” Erdős Problems, accessed 2026-08-06: https://www.erdosproblems.com/64
+- T. F. Bloom, “Erdős Problem #64,” Erdős Problems: https://www.erdosproblems.com/64
+- Erdős Problems #64 discussion thread: https://www.erdosproblems.com/forum/thread/64?order=oldest
 - A. Carr, *Every Minimal Counterexample to the Erdős–Gyárfás Conjecture is Predominantly Cubic*, arXiv:2605.22844.
+- L. Narins, A. Pokrovskiy, T. Szabó, *Graphs without proper subgraphs of minimum degree 3 and short cycles*, arXiv:1408.5289.
 
 ## Suggested citation
 
-> Zackary Loevseth, “Excess-Sensitive Degree-Three Bounds for Minimal Erdős–Gyárfás Counterexamples,” version 0.2.0, 2026. AI-assisted structural research note; novelty and external review pending.
+> Zackary Loevseth, “Excess-Sensitive Degree-Three Bounds for Minimal Erdős–Gyárfás Counterexamples,” version 0.2.0, 2026. AI-assisted structural research note; external review and novelty determination pending.
