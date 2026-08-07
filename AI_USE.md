@@ -1,53 +1,77 @@
 # AI assistance, authorship, and claim status
 
-## Human direction and authorship
+## Human direction
 
-**Zackary Loevseth** directed the research target, long-horizon execution protocol, preservation requirements, recovery decisions, evaluation criteria, and public-release decision.
+**Zackary Loevseth** directed the research target, execution protocol, preservation and recovery decisions, theorem-first redirection, evaluation criteria, and public-release decision.
 
 ## AI assistance
 
-OpenAI systems, including ChatGPT/GPT-5.6 Pro, substantially assisted with:
+AI systems substantially assisted with:
 
-- reviewing and reconstructing the recovered workspace;
-- checking claim boundaries and distinguishing global from restricted results;
-- selected independent computational audits represented by the included JSON outputs;
-- deriving and drafting the proposed bound
-  \(|V_3|\ge2|V_{\ge4}|+3\) from Carr's published structural lemmas;
-- preparing the data-significance review and this public release.
+- recovering and auditing the large research workspace;
+- separating global, structural, restricted-class, computational, superseded, and rejected claims;
+- deriving and refining the auxiliary-graph mechanism;
+- producing structurally separate proof reconstructions;
+- exact computational falsification and regression checks;
+- prior-art comparison and claim-status calibration;
+- drafting and revising the public theorem note, provenance record, and claim ledger.
 
-The larger research process also used other AI systems. The preserved handoff contains the detailed provenance available at the recovery checkpoint.
+OpenAI systems, including Codex and ChatGPT/GPT-5.6, were central to the theorem-first run and reconstruction. Anthropic Claude and DeepSeek were also used for adversarial critique and comparison against public prior work.
 
 ## Claim-status ledger
 
 ### Open problem
 
-Erdős Problem #64 is not solved by this release.
+Erdős Problem #64 remains open. This repository claims neither a global proof nor a counterexample.
 
-### Theorem candidate
+### Structural theorem
 
-The note `proofs/minimal-counterexample-plus3.md` gives a complete proof argument for
+[`proofs/minimal-counterexample-excess-theorem.md`](proofs/minimal-counterexample-excess-theorem.md) gives a complete human-checkable argument that every counterexample chosen first with minimum order and then minimum size satisfies
 
 \[
-|V_3|\ge2|V_{\ge4}|+3
+|V_3(G)|\ge
+4+\sum_{v\in V_{\ge4}(G)}(d_G(v)-2).
 \]
 
-in a hypothetical minimum-order counterexample, conditional on the two stated structural lemmas of Avery Carr.
+Equivalently, with \(b=|V_{\ge4}(G)|\) and \(s=\sum_{v\in V_{\ge4}(G)}(d_G(v)-4)\),
 
-This argument has **not** received external human verification. Until it does, it should be cited as an unverified theorem candidate or research note rather than as an established theorem.
+\[
+|V_3(G)|\ge2b+s+4.
+\]
 
-### Restricted computational result
+The public proof rederives the minimality facts it uses. Their prior provenance is nevertheless acknowledged: Markström observed independence of the degree-at-least-four set, and Carr proved the degree-three-neighbour property and the published \(4/7\) density bound.
 
-The order-28 JSON audit verifies the recovered class union and exact cycle properties of the stated 251 cubic isomorphism classes, subject to the source-boundary qualification written into the audit itself. It is not a proof of the full conjecture.
+### Prior public comparison
 
-### Rejected candidate
+A comment by `jul059` on the Erdős Problems #64 discussion thread dated 26 July 2026 gives \(|V_3|\ge2|V_{\ge4}|+1\). Accordingly, no claim is made that this repository first crossed the \(2/3\) threshold.
 
-The order-31 one-port graph fails the counterexample contract because its minimum degree is two and it contains 138 cycles of length 16.
+### Derived edge bound
 
-## Reuse and review expectation
+The theorem gives
 
-Readers should independently check the mathematical proof and should preserve the stated distinction between:
+\[
+|E(G)|\le2|V(G)|-b-2.
+\]
 
-- a human-checkable structural argument;
-- a complete audit of a defined recovered class;
-- upstream generator-completeness claims that were not rerun from raw states; and
-- broad claims about all finite graphs, which are not made here.
+This is advertised as an improvement over the prior \(2|V|-3\) consequence only when \(b\ge2\).
+
+### Superseded theorem candidate
+
+The earlier `proofs/minimal-counterexample-plus3.md` note is retained for provenance but is superseded by the excess-sensitive theorem.
+
+### Computational audits
+
+The included finite audits verify only their declared scopes. They are not evidence that all finite graphs have been searched.
+
+## Review boundary
+
+The theorem passed multiple structurally independent **internal AI-assisted** proof reconstructions and exact falsification checks. These do not constitute external human peer review, independent research-group review, or formal proof-assistant verification.
+
+No priority or novelty claim is made. Readers should independently inspect the proof and preserve the distinction among:
+
+- a general structural theorem about a hypothetical minimal counterexample;
+- finite computational audits of specified graph classes;
+- local sealed provenance;
+- internal AI-assisted verification;
+- external specialist review, which has not yet occurred;
+- and the unresolved global conjecture.
