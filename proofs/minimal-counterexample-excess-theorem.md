@@ -1,313 +1,215 @@
-# Excess-sensitive degree-three bounds for minimal Erdős–Gyárfás counterexamples
+# Excess-sensitive degree-three bounds for a minimal counterexample
 
-**Public status:** human-checkable structural theorem; internally reconstructed and clean-clone checked; no external peer review or novelty claim.
+**Public status:** `PROVED_HUMAN_ARGUMENT`  
+**Global solution:** `NO`  
+**Novelty:** `NOVELTY_NOT_ESTABLISHED`  
+**External specialist review:** none claimed
 
-## 1. Setup
+The frozen canonical theorem audited during the theorem-first run has SHA-256
+`387ffe0f087e8bf3a66df20d5d267a798f76f5a079e39fcfc70787878b400444`.
+This public note preserves its mathematical argument while making the current status and prior-work boundary explicit.
 
-Let \(G\) be a finite simple counterexample to the Erdős–Gyárfás power-of-two cycle conjecture, chosen with minimum order and, subject to that, minimum size. Thus
+## Statement
+
+Let \(G\) be a counterexample to the Erdős–Gyárfás conjecture chosen first with minimum order and then, subject to that, minimum size. Put
 
 \[
-\delta(G)\ge3
+A=V_3(G),\qquad B=V_{\ge4}(G),\qquad b=|B|,
 \]
 
-and \(G\) has no cycle of length \(2^k\) for any integer \(k\ge2\).
-
-Use the following two structural properties proved by Avery Carr:
-
-1. \(B:=V_{\ge4}(G)=\{v:d_G(v)\ge4\}\) is independent.
-2. Every vertex of \(G\) has a neighbor of degree exactly three.
-
-Set
+and let the excess degree above four on \(B\) be
 
 \[
-A:=V_3(G)=\{v:d_G(v)=3\},\qquad
-b:=|B|,
+s=\sum_{v\in B}(d_G(v)-4).
 \]
 
-and define the total degree excess above four on \(B\) by
+Then
 
 \[
-s:=\sum_{v\in B}(d_G(v)-4).
+\boxed{|A|\ge 2b+s+4.}
 \]
 
-Hence
+Consequently, writing \(n=|V(G)|\) and \(m=|E(G)|\),
 
 \[
-\sum_{v\in B}d_G(v)=4b+s.
+\boxed{3|A|\ge2n+s+4}
+\qquad\text{and}\qquad
+\boxed{m\le2n-b-2.}
 \]
 
-## 2. Theorem
+For \(b\ge2\), the proof also gives \(a_2\ge s+6\). For \(b=1\), it gives \(a_2=4+s\), \(a_3\ge4+s\), and \(|A|\ge8+2s\).
+
+## Proof
+
+Every proper subgraph of \(G\) has minimum degree at most two. Otherwise it would itself be a dyadic-cycle-free graph of minimum degree at least three and would contradict the minimum-order choice, or, if spanning, the secondary minimum-size choice.
+
+Applying this to \(G-v\) shows that every vertex of \(G\) has a neighbour of degree exactly three. Also \(B\) is independent: deleting an edge with both endpoints in \(B\) preserves minimum degree at least three and cannot create a cycle, contradicting the minimum-size choice.
+
+For \(0\le i\le3\), let
 
 \[
-\boxed{|A|\ge2b+s+4.}
+A_i=\{a\in A:d_{G[A]}(a)=i\},\qquad a_i=|A_i|.
 \]
 
-Equivalently,
+The degree-three-neighbour property implies \(a_0=0\).
+
+Construct an auxiliary graph \(F\) on vertex set \(B\). Each vertex \(a\in A_1\) has exactly two neighbours in \(B\); add to \(F\) the edge between those two neighbours. The endpoints are distinct because \(G\) is simple. Two different vertices of \(A_1\) cannot define the same edge: if they did, the two vertices of \(A_1\) and their two common neighbours in \(B\) would form a \(C_4\) in \(G\). Hence \(F\) is finite and simple and
 
 \[
-\boxed{
-|V_3(G)|
-\ge
-4+\sum_{v\in V_{\ge4}(G)}(d_G(v)-2).
-}
+|E(F)|=a_1.
 \]
 
-Consequently,
+A simple cycle of length \(r\) in \(F\) lifts, by replacing each auxiliary edge with its distinct length-two path through the corresponding vertex of \(A_1\), to a simple cycle of length \(2r\) in \(G\). Thus a cycle of length \(2^k\), \(k\ge2\), in \(F\) would give a dyadic cycle in \(G\).
+
+Consequently \(F\) is 2-degenerate. If some subgraph \(J\subseteq F\) had minimum degree at least three, then \(J\) would itself be a finite simple dyadic-cycle-free graph of minimum degree at least three. Since the degree-three-neighbour property makes \(A\neq\varnothing\),
 
 \[
-\boxed{3|A|\ge2|V(G)|+s+4}
+|V(J)|\le b<|V(G)|,
+\]
+
+contradicting the minimum-order choice of \(G\).
+
+### Case \(b\ge2\)
+
+A simple 2-degenerate graph on \(b\ge2\) vertices has at most \(2b-3\) edges, so
+
+\[
+a_1\le2b-3.
+\]
+
+Write
+
+\[
+\delta=2b-3-a_1\ge0.
+\]
+
+Since \(B\) is independent, counting the edges between \(A\) and \(B\) at their two sides gives the exact identity
+
+\[
+4b+s=e(A,B)=2a_1+a_2.
+\]
+
+Substituting \(a_1=2b-3-\delta\) yields
+
+\[
+a_2=s+6+2\delta
 \]
 
 and
 
 \[
-\boxed{|E(G)|\le2|V(G)|-b-2.}
+|A|=a_1+a_2+a_3=2b+s+3+\delta+a_3.
 \]
 
-## 3. Proof
-
-For \(i\in\{1,2,3\}\), define
+The handshaking lemma in \(G[A]\) says that
 
 \[
-A_i=\{x\in A:d_{G[A]}(x)=i\}.
+a_1+2a_2+3a_3
 \]
 
-Carr's second property implies that every \(x\in A\) has at least one neighbor in \(A\). Therefore
-
-\[
-A=A_1\sqcup A_2\sqcup A_3.
-\]
-
-### 3.1. The case \(b\ge2\)
-
-Every \(x\in A_1\) has exactly two neighbors in \(B\). Construct a graph \(H\) on vertex set \(B\) by replacing each \(x\in A_1\), whose two \(B\)-neighbors are \(u_x,v_x\), with the edge \(u_xv_x\).
-
-The map
-
-\[
-x\longmapsto u_xv_x
-\]
-
-is a bijection from \(A_1\) to \(E(H)\). It creates no loop because \(G\) is simple. It creates no parallel edges: if distinct \(x,y\in A_1\) had the same two neighbors \(u,v\in B\), then
-
-\[
-u-x-v-y-u
-\]
-
-would be a \(4\)-cycle in \(G\). Hence \(H\) is simple and
-
-\[
-|A_1|=|E(H)|.
-\]
-
-We next prove that \(H\) is 2-degenerate. Otherwise \(H\) would contain a subgraph \(J\) with minimum degree at least three. Since \(A\neq\varnothing\),
-
-\[
-|V(J)|\le b<|V(G)|.
-\]
-
-By the minimum-order choice of \(G\), the graph \(J\) cannot itself be a counterexample. Therefore \(J\) contains a cycle \(C\) of length \(2^k\) for some \(k\ge2\).
-
-Replace every edge \(u_xv_x\) of \(C\) by the two-edge path
-
-\[
-u_x-x-v_x
-\]
-
-in \(G\). Distinct edges of \(C\) have distinct representatives in \(A_1\), and the vertices of \(C\) are distinct, so the lifted closed walk is a simple cycle. Its length is
-
-\[
-2\cdot2^k=2^{k+1},
-\]
-
-contradicting the definition of \(G\). Thus \(H\) is 2-degenerate.
-
-A simple 2-degenerate graph on \(b\ge2\) vertices has at most \(2b-3\) edges, so
-
-\[
-|A_1|=|E(H)|\le2b-3.
-\]
-
-Now count the cut \(E(A,B)\). Since \(B\) is independent,
-
-\[
-e(A,B)=\sum_{v\in B}d_G(v)=4b+s.
-\]
-
-From the \(A\)-side, a vertex of \(A_i\) has exactly \(3-i\) neighbors in \(B\). Hence
-
-\[
-e(A,B)=2|A_1|+|A_2|.
-\]
-
-Therefore
-
-\[
-|A_2|=4b+s-2|A_1|,
-\]
-
-and so
-
-\[
-\begin{aligned}
-|A|
-&=|A_1|+|A_2|+|A_3|\\
-&=4b+s-|A_1|+|A_3|\\
-&\ge4b+s-(2b-3)\\
-&=2b+s+3.
-\end{aligned}
-\]
-
-The handshaking lemma now supplies the strict improvement. Since
-
-\[
-2|E(G)|=3|A|+4b+s,
-\]
-
-we have
-
-\[
-|A|\equiv s\pmod2.
-\]
-
-But
-
-\[
-2b+s+3\equiv s+1\pmod2.
-\]
-
-Thus the value \(2b+s+3\) is impossible, and
+is even, hence \(a_1+a_3\) is even. Since \(a_1=2b-3-\delta\) and \(2b-3\) is odd, \(\delta+a_3\) is odd. It is a nonnegative integer, so \(\delta+a_3\ge1\). Therefore
 
 \[
 |A|\ge2b+s+4.
 \]
 
-### 3.2. The case \(b=1\)
+This case also gives \(a_2\ge s+6\).
 
-Write \(B=\{z\}\). A vertex in \(A_1\) would require two distinct neighbors in the one-vertex set \(B\), which is impossible in a simple graph. Hence
+### Case \(b=1\)
 
-\[
-A_1=\varnothing.
-\]
-
-The exact cut count gives
+An \(A_1\)-vertex would need two distinct neighbours in \(B\), so \(a_1=0\). The edge-cut identity gives
 
 \[
-|A_2|=d_G(z)=4+s.
+a_2=4+s.
 \]
 
-The handshaking lemma in \(G[A]\) shows that \(|A_3|\) is even, because
+Let \(v\) be the unique vertex of \(B\), put \(S=A_2=N_G(v)\), and put \(T=A_3\). Every vertex of \(S\) has degree two in \(G[A]\). A vertex of \(S\) has at most one neighbour in \(S\), since two such neighbours together with \(v\) would form a \(C_4\). It therefore has at least one neighbour in \(T\), and hence
 
 \[
-\sum_{x\in A}d_{G[A]}(x)=2|A_2|+3|A_3|
+e(S,T)\ge|S|.
 \]
 
-is even.
-
-If \(|A_3|=0\), then \(G[A]\) is 2-regular and every vertex of \(A\) is adjacent to \(z\). Choose three consecutive vertices \(x,y,w\) on any cycle component of \(G[A]\). Then
+Conversely, a vertex of \(T\) has at most one neighbour in \(S\), because two such neighbours together with \(v\) would again form a \(C_4\). Thus
 
 \[
-z-x-y-w-z
+e(S,T)\le|T|,
 \]
 
-is a \(4\)-cycle, a contradiction. Thus \(|A_3|\) is a positive even integer, so \(|A_3|\ge2\). Therefore
+so
 
 \[
-|A|=|A_2|+|A_3|\ge4+s+2=s+6=2b+s+4.
+a_3=|T|\ge|S|=a_2=4+s.
 \]
 
-### 3.3. The case \(b=0\)
-
-Then \(G\) is cubic, so \(A=V(G)\). A finite simple graph of minimum degree three has at least four vertices. Hence
+Therefore
 
 \[
-|A|\ge4=2b+s+4.
+|A|=a_2+a_3\ge8+2s\ge2b+s+4.
 \]
 
-This completes the proof. \(\square\)
+### Case \(b=0\)
 
-## 4. Corollaries
+The graph is cubic. Its order is even. The only simple cubic graph on four vertices is \(K_4\), which has a \(C_4\). On six vertices the complement is a simple 2-regular graph, hence is either a six-cycle or two disjoint triangles; the corresponding cubic graphs both contain a \(C_4\). Therefore
 
-Let \(n=|V(G)|=|A|+b\) and \(m=|E(G)|\).
+\[
+|A|=|V(G)|\ge8>2b+s+4.
+\]
 
-The main inequality is equivalent to
+The three cases prove the first boxed inequality.
+
+Finally, since \(n=|A|+b\), rearrangement gives
 
 \[
 3|A|\ge2n+s+4.
 \]
 
-Also,
+The degree sum is
 
 \[
-2m=3|A|+4b+s.
+2m=3|A|+4b+s,
 \]
 
-Using \(|A|\ge2b+s+4\),
+and hence
 
 \[
-2m\le4|A|+2b-4=4n-2b-4,
+4n-2m=|A|-s\ge2b+4.
 \]
 
-and therefore
+Dividing by two gives
 
 \[
 m\le2n-b-2.
 \]
 
-In particular,
+\(\square\)
+
+## Prior-work and comparison boundary
+
+The proof rederives the two minimality facts it uses, but they have prior provenance. Carr records Markström's observation that the degree-at-least-four vertices form an independent set, and Carr proves that every vertex of a minimal counterexample is adjacent to a degree-three vertex, as well as the published \(4/7\) density bound.
+
+A comment by `jul059` on the Erdős Problems #64 discussion thread dated 26 July 2026 gives \(|V_3|\ge2|V_{\ge4}|+1\). Therefore the coarse “strictly more than two thirds” consequence is not claimed here as new.
+
+Narins–Pokrovskiy–Szabó imply the prior-art bound
 
 \[
-\frac{2m}{n}\le4-\frac{2b+4}{n}<4.
+m\le2n-3
 \]
 
-### 4.1. Maximum average degree
+for a lexicographically minimal counterexample. The excess-sensitive bound \(m\le2n-b-2\) is strictly stronger when \(b\ge2\), equal when \(b=1\), and as a uniform formula weaker when \(b=0\). The cubic case is handled separately above.
 
-Every proper subgraph \(F\subsetneq G\) is 2-degenerate. Indeed, if some subgraph \(J\subseteq F\) had minimum degree at least three, then \(J\) would contain no dyadic cycle because \(G\) contains none. If \(|V(J)|<|V(G)|\), this contradicts minimum order; if \(V(J)=V(G)\) and \(E(J)\subsetneq E(G)\), it contradicts the minimum-size tie-break.
+No literature-priority claim is made for the exact excess-sensitive inequality or its auxiliary-graph/parity mechanism.
 
-Thus every proper subgraph on at least two vertices has at most \(2|V|-3\) edges, while the displayed edge bound handles \(G\) itself. Consequently,
+## Local sharpness and non-scope
 
-\[
-\boxed{\operatorname{mad}(G)<4.}
-\]
+An exact internal witness attains \(|A|=2b+s+4\) and \(m=2n-b-2\) while satisfying the local counting, parity, 2-degeneracy and \(C_4\)-constraints used above. It contains a \(C_8\), so it is not a counterexample. Thus the constant four is claimed sharp only for those local ingredients, not for the full counterexample class.
 
-The minimum-size tie-break is used here for proper spanning subgraphs.
+The theorem does not prove that \(B=\varnothing\), that a minimal counterexample is cubic, or that Erdős Problem #64 is true or false.
 
-### 4.2. Arboricity
+## Verification provenance
 
-Every subgraph \(J\) on at least two vertices satisfies
+- Frozen canonical theorem SHA-256: `387ffe0f087e8bf3a66df20d5d267a798f76f5a079e39fcfc70787878b400444`.
+- Internal canonical audit: [`../audits/excess-theorem-canonical-audit.md`](../audits/excess-theorem-canonical-audit.md), verdict `PASS — no correction required`.
+- Second structurally independent internal reconstruction: [`../audits/excess-theorem-second-audit.md`](../audits/excess-theorem-second-audit.md), verdict `PASS`.
+- Promotion record: [`excess-theorem-promotion.md`](excess-theorem-promotion.md).
 
-\[
-|E(J)|\le2(|V(J)|-1).
-\]
-
-The Nash-Williams arboricity criterion gives
-
-\[
-\operatorname{arb}(G)\le2.
-\]
-
-Since \(\delta(G)\ge3\), the graph \(G\) is not a forest. Therefore
-
-\[
-\boxed{\operatorname{arb}(G)=2.}
-\]
-
-## 5. Scope and provenance
-
-This theorem constrains a hypothetical lexicographically minimal counterexample. It does not prove that such a counterexample exists or does not exist, and it does not solve Erdős Problem #64.
-
-The theorem-first run reported:
-
-```text
-Local sealed commit:
-3e996e35a408ce03dc3152205799e7619f301fe8
-
-Packet manifest:
-a34486bfeb3a06b089a75cc90740326d3dc40f6d0f7e629fc156c356af8f8a2e
-72/72 entries PASS
-
-Seal manifest:
-0124ba1be7ac33a95cba273197ae3b70eea49b64b70db6cdb1b0ce1f1c0f0ce3
-```
-
-The proof passed structurally independent Codex reconstructions and clean-clone executable checks in that local sealed workspace. No external human peer review, formal proof-assistant verification, or novelty claim is represented by this note.
+These checks are not external peer review or formal proof-assistant verification.
