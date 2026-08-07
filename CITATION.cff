@@ -11,13 +11,13 @@ authors:
 repository-code: "https://github.com/ZackaryLoevseth/Erd-s-Problem-64"
 url: "https://github.com/ZackaryLoevseth/Erd-s-Problem-64"
 abstract: >-
-  A human-checkable structural theorem for hypothetical lexicographically
-  minimal counterexamples to the Erdős–Gyárfás power-of-two cycle conjecture.
-  With A=V_3(G), B=V_{>=4}(G), b=|B|, and
-  s=sum_{v in B}(d(v)-4), the note proves |A| >= 2b+s+4, and derives
-  3|A| >= 2|V(G)|+s+4, |E(G)| <= 2|V(G)|-b-2,
-  maximum average degree below four, and arboricity two.
-  Erdős Problem #64 remains open; novelty and external review are not claimed.
+  AI-assisted structural research on hypothetical lexicographically minimal
+  counterexamples to the Erdős–Gyárfás power-of-two cycle conjecture. With
+  A=V_3(G), B=V_{>=4}(G), b=|B|, and s=sum_{v in B}(d(v)-4), the public note
+  proves |A| >= 2b+s+4 and derives 3|A| >= 2|V(G)|+s+4 and
+  |E(G)| <= 2|V(G)|-b-2. Erdős Problem #64 remains open. The proof has
+  internal AI-assisted reconstructions but no external specialist review;
+  novelty and priority are not claimed.
 keywords:
   - graph theory
   - Erdős–Gyárfás conjecture
@@ -25,5 +25,4 @@ keywords:
   - minimal counterexample
   - degree sequence
   - degeneracy
-  - arboricity
   - AI-assisted mathematics
