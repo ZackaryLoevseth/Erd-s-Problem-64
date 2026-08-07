@@ -41,31 +41,28 @@ and
 \boxed{|E(G)|\le2|V(G)|-b-2}.
 \]
 
-The proof suppresses the degree-three vertices having two neighbours in \(B\) to a simple auxiliary graph on \(B\). Exact cycle doubling and minimum-order minimality force that auxiliary graph to be 2-degenerate; an exact cut identity retaining the excess \(s\), followed by a parity argument, yields the additional unit in the bound.
+The proof suppresses the degree-three vertices having two neighbours in \(B\) to a simple auxiliary graph on \(B\). Exact cycle doubling and minimum-order minimality force that auxiliary graph to be 2-degenerate; an exact cut identity retaining the excess \(s\), followed by parity, gives the stated bound.
 
-**Full proof:** [`proofs/minimal-counterexample-excess-theorem.md`](proofs/minimal-counterexample-excess-theorem.md)
+## Read the result
 
-**Promotion record:** [`proofs/excess-theorem-promotion.md`](proofs/excess-theorem-promotion.md)
-
-**Independent internal reconstructions:**
-[`audits/excess-theorem-canonical-audit.md`](audits/excess-theorem-canonical-audit.md) and
-[`audits/excess-theorem-second-audit.md`](audits/excess-theorem-second-audit.md).
+- **Full proof:** [`proofs/minimal-counterexample-excess-theorem.md`](proofs/minimal-counterexample-excess-theorem.md)
+- **Promotion record:** [`proofs/excess-theorem-promotion.md`](proofs/excess-theorem-promotion.md)
+- **Internal reconstruction 1:** [`audits/excess-theorem-canonical-audit.md`](audits/excess-theorem-canonical-audit.md)
+- **Internal reconstruction 2:** [`audits/excess-theorem-second-audit.md`](audits/excess-theorem-second-audit.md)
+- **Claim ledger:** [`PUBLICATION_STATUS.md`](PUBLICATION_STATUS.md)
+- **AI-use disclosure:** [`AI_USE.md`](AI_USE.md)
 
 ## Prior-work boundary
 
-The theorem is presented without a novelty or priority claim.
+No novelty or priority claim is made for the excess-sensitive theorem.
 
-- Markström observed that, in a minimal counterexample, the vertices of degree at least four form an independent set; Carr records this observation and proves that every vertex is adjacent to a degree-three vertex, together with the published \(4/7\) degree-three density bound.
-- A comment by `jul059` on the Erdős Problems #64 discussion thread dated 26 July 2026 gives the stronger public bound \(|V_3|\ge2|V_{\ge4}|+1\). Thus the coarse “more than \(2/3\)” conclusion is not claimed here as new.
-- Narins–Pokrovskiy–Szabó imply \(|E(G)|\le2|V(G)|-3\) for a lexicographically minimal counterexample. The displayed excess-sensitive edge bound improves that inequality when \(b\ge2\), is equal when \(b=1\), and as a uniform formula is weaker when \(b=0\). In the cubic case \(b=0\), the proof separately gives \(|V(G)|\ge8\) and \(|E(G)|=3|V(G)|/2\).
-
-The earlier note [`proofs/minimal-counterexample-plus3.md`](proofs/minimal-counterexample-plus3.md) proves the weaker \(|V_3|\ge2|V_{\ge4}|+3\) bound. It is retained only as historical provenance and is superseded by the excess-sensitive theorem above.
+- Markström observed that, in a minimal counterexample, the vertices of degree at least four form an independent set. Carr records this observation, proves that every vertex is adjacent to a degree-three vertex, and proves the published \(4/7\) degree-three density bound.
+- A comment by `jul059` on the Erdős Problems #64 discussion thread dated 26 July 2026 gives \(|V_3|\ge2|V_{\ge4}|+1\). The coarse “more than \(2/3\)” conclusion is therefore prior public work and is not claimed here.
+- Narins–Pokrovskiy–Szabó imply \(|E(G)|\le2|V(G)|-3\) for the lexicographically minimal counterexample setting. The excess-sensitive bound \(|E(G)|\le2|V(G)|-b-2\) is strictly stronger when \(b\ge2\), equal when \(b=1\), and as a uniform formula weaker when \(b=0\). In the cubic case \(b=0\), the proof separately gives \(|V(G)|\ge8\) and \(|E(G)|=3|V(G)|/2\).
 
 ## Verification and claim status
 
-The theorem has a human-checkable proof. During the theorem-first run it passed two structurally independent Codex proof reconstructions and extensive exact falsification checks. Those are **internal AI-assisted checks**, not independent external human review.
-
-Current status:
+The theorem has a human-checkable proof. During the theorem-first run it passed two structurally independent Codex proof reconstructions and extensive exact falsification checks. Those are **internal AI-assisted checks**, not external human or independent research-group review.
 
 ```text
 PROVED_HUMAN_ARGUMENT
@@ -75,15 +72,17 @@ NO_EXTERNAL_SPECIALIST_REVIEW
 NO_FORMAL_PROOF_ASSISTANT_VERIFICATION
 ```
 
-The frozen canonical theorem used by the audits had SHA-256
-`387ffe0f087e8bf3a66df20d5d267a798f76f5a079e39fcfc70787878b400444`.
-The public proof is a publication transcription of that mathematical argument, with updated status and attribution language; the frozen local file itself was deliberately not mutated after audit.
+The frozen canonical theorem used by the audits has SHA-256
 
-See [`PUBLICATION_STATUS.md`](PUBLICATION_STATUS.md) for the public claim ledger and [`AI_USE.md`](AI_USE.md) for the AI-use disclosure.
+```text
+387ffe0f087e8bf3a66df20d5d267a798f76f5a079e39fcfc70787878b400444
+```
+
+The public proof is a publication transcription of that audited mathematical argument with updated status and attribution language.
 
 ## Local sharpness and non-scope
 
-The internal audit supplies an exact graph attaining both \(|A|=2b+s+4\) and \(|E|=2|V|-b-2\) while satisfying the local counting, parity, 2-degeneracy and \(C_4\)-constraints used in the argument. That graph contains a \(C_8\), so it is **not** a counterexample. Accordingly, the constant four is only claimed sharp for those local ingredients, not for the full counterexample class.
+The internal audit supplies an exact graph attaining both \(|A|=2b+s+4\) and \(|E|=2|V|-b-2\) while satisfying the local counting, parity, 2-degeneracy, and \(C_4\)-constraints used in the argument. That graph contains a \(C_8\), so it is **not** a counterexample. The constant four is therefore claimed sharp only for those local ingredients, not for the full counterexample class.
 
 The theorem does not prove that \(B=\varnothing\), that every minimal counterexample is cubic, or that no counterexample exists.
 
