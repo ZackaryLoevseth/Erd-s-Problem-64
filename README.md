@@ -3,7 +3,9 @@
 > **Canonical paper repository:**
 > [`ZackaryLoevseth/erdos-64-excess-degree-bounds`](https://github.com/ZackaryLoevseth/erdos-64-excess-degree-bounds)
 > contains the isolated manuscript, supplement, and exact reproducibility
-> release. This repository remains the broader historical research archive;
+> release at [`v1.0.0-preprint`](https://github.com/ZackaryLoevseth/erdos-64-excess-degree-bounds/releases/tag/v1.0.0-preprint).
+> Its status is **PUBLIC GITHUB PREPRINT RELEASE — EXTERNAL SPECIALIST REVIEW
+> PENDING; NOT JOURNAL/ARXIV SUBMITTED**. This repository remains the broader historical research archive;
 > its commits and the historically misclassified `v1.0.0` tag are preserved.
 
 > **Global status:** Erdős Problem #64 remains open. This repository does **not** claim a proof of the conjecture or a counterexample.
